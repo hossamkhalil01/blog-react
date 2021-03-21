@@ -1,26 +1,22 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 export function Auth() {
-  const [user, updateUser] = useState();
 
-  handleChange = (key, value) => {
+  const [user, updateUser] = useState();
+  const [submited , updateSubmit] = useState({submited:false});
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => updateUser(users));
+  }, [updateUser]);
+
+  const handleChange = (key, value) => {
     updateUser({ [key]: value });
   }
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newPost = {
-      title: state.title,
-      body: state.body,
-      userId: 0,
-      id: Date.now(),
-    };
-    setState((state) => ({
-      posts: state.posts.concat(newPost),
-      title: "",
-      body: "",
-    }));
   }
   return (
 
