@@ -1,34 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Posts({ userId }) {
-    const [posts, updatePosts] = useState();
+  const [userPosts, updatePosts] = useState({
+    posts: []
+  });
+  
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+      .then((response) => response.json())
+      .then((posts) => {
+        updatePosts({ ...userPosts,posts });
+      });
+  }, []);
 
-    useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/posts")
-            .then((response) => response.json())
-            .then((posts) => updatePosts(posts));
-    }, [updatePosts]);
-
-    if (posts) {
-        if (userId) {
-            { posts.filter((post) => post.userId == userId); }
-
-        } else {
-            posts.slice(0, 6);
-        }
-    }
-    updatePosts(posts);
-
-    return (
-        <div>
-            {posts.forEach((post) => {
-                <div>
-                    <h2>{post.title}</h2>
-                    <p>{post.body.substring(0, 30)}</p>
-                </div>;
-            })}
-        </div>
-    );
-
-    const [] = useState;
+  return (
+    <div>
+      {userPosts.posts.map((post) => {
+       return <div>
+          <p>{post.title}</p>
+          <p>{post.body.substring(0, 30)}</p>
+        </div>;
+      })}
+    </div>
+  );
 }

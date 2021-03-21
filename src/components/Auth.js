@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Posts } from "./Posts"
 export function Auth() {
 
   const [user, updateUser] = useState({
@@ -37,7 +38,12 @@ export function Auth() {
 
   if (authenUser.isAuthen) {
 
-    return (<h1> Welcome {authenUser.name} </h1>)
+    return (
+		<div>
+			<h1> Welcome {authenUser.name} </h1>
+			<Posts userId={authenUser.id}/>
+		</div>
+	)
 
   }
   else {
