@@ -1,35 +1,34 @@
 import { useState } from "react";
 
 export function Posts({ userId }) {
-  const [posts, updatePosts] = useState();
+    const [posts, updatePosts] = useState();
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((posts) => updatePosts(posts));
-  }, [updatePosts]);
+    useEffect(() => {
+        fetch("https://jsonplaceholder.typicode.com/posts")
+            .then((response) => response.json())
+            .then((posts) => updatePosts(posts));
+    }, [updatePosts]);
 
-  if (posts) {
-    if (userId) {
-      {
-        posts.filter((post) => post.userId == userId);
-      }
-    } else {
-      posts.slice(0, 6);
+    if (posts) {
+        if (userId) {
+            { posts.filter((post) => post.userId == userId); }
+
+        } else {
+            posts.slice(0, 6);
+        }
     }
-  }
-  updatePosts(posts);
+    updatePosts(posts);
 
-  return (
-    <div>
-      {posts.forEach((post) => {
+    return (
         <div>
-          <h2>{post.title}</h2>
-          <p>{post.body.substring(0, 30)}</p>
-        </div>;
-      })}
-    </div>
-  );
+            {posts.forEach((post) => {
+                <div>
+                    <h2>{post.title}</h2>
+                    <p>{post.body.substring(0, 30)}</p>
+                </div>;
+            })}
+        </div>
+    );
 
-  const [] = useState;
+    const [] = useState;
 }
