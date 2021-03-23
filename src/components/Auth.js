@@ -1,7 +1,9 @@
 import { navigate } from "@reach/router";
 import { useState } from "react";
 import { Posts } from "./Posts";
+import { FeaturedPosts } from "./FeaturedPosts";
 import { UserContext } from "./UserContext";
+import { Createpost } from "./CreatePost";
 
 const nav = navigate;
 
@@ -41,7 +43,10 @@ export function Auth() {
 
     return (
       <UserContext.Provider value={{ currentUser: authenUser }}>
-        <Posts userId={authenUser.id}></Posts>
+        {/* <Posts userId={authenUser.id}></Posts> */}
+        {/* <FeaturedPosts></FeaturedPosts> */}
+        {/* <Post></Post> */}
+        <Createpost userId ={authenUser.id}></Createpost>
       </UserContext.Provider>
     );
 

@@ -6,7 +6,8 @@ import { Profile } from "./components/Profile";
 function Blog() {
   return (
     <Router>
-      <Auth path="/" />
+      
+      <Auth path="/"/>
       <Profile path="/profile" />
     </Router>
   );
