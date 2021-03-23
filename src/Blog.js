@@ -1,11 +1,14 @@
 import './Blog.css';
 import { Auth } from "./components/Auth";
+import { Profile } from "./components/profile"
+import { Router } from "@reach/router"
 
 function Blog() {
   return (
-    <div className="App">
-      <Auth />
-    </div>
+    <Router>
+      <Auth path="/"/>
+      <Profile path="/profile"  />
+    </Router>
   );
 }
 

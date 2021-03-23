@@ -16,7 +16,7 @@ export function Posts({ userId }) {
   return (
     <div>
       {userPosts.posts.map((post) => {
-       return <div>
+       return <div key={post.id}>
           <p>{post.title}</p>
           <p>{post.body.substring(0, 30)}</p>
         </div>;
