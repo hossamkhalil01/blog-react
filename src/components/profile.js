@@ -1,11 +1,17 @@
-import { UserContext } from "./UserContext";
 import { useContext } from "react";
-export function Profile(){
-    const loogedUser = useContext(UserContext);
-    console.log(loogedUser);
+import { Posts } from "./Posts";
+import { UserContext } from "./UserContext";
+
+export function Profile() {
+
+    const currentUser = useContext(UserContext).currentUser;
+
     return (
-        <h1>
-            test
-        </h1>
+        <div>
+            <h1>Welcome Back {currentUser.name}  </h1>
+            <h2>Your recent posts: </h2>
+            <Posts userId={currentUser.id} > </Posts>
+        </div>
     )
+
 }

@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { UserContext } from "./UserContext"
-import { Posts } from "./Posts";
 import { navigate } from "@reach/router";
+import { useState } from "react";
+import { Posts } from "./Posts";
+import { UserContext } from "./UserContext";
+
+const nav = navigate;
+
 export function Auth() {
+
   const [user, updateUser] = useState({
     username: "",
     email: "",
@@ -10,7 +14,7 @@ export function Auth() {
 
   const [authenUser, updateAutehnUser] = useState({
     isAuthen: false,
-    errorMassage: "",
+    errorMsg: "",
   });
 
   const handleChange = (key, value) => {
@@ -25,30 +29,25 @@ export function Auth() {
       .then((response) => response.json())
       .then((fetchedUsers) => {
         if (fetchedUsers.length > 0) {
-			updateUser({...fetchedUsers[0]});
+          updateUser({ ...fetchedUsers[0] });
           updateAutehnUser({ ...fetchedUsers[0], isAuthen: true });
-          signin();
         } else {
-          updateAutehnUser({ isAuthen: false, errorMassage: "invalid user" });
+          updateAutehnUser({ isAuthen: false, errorMsg: "Invalid Username or Passwrod" });
         }
       });
   };
 
-  const signin = () => {
-	  navigate("/profile")
-  };
-
   if (authenUser.isAuthen) {
+
     return (
-		<UserContext.Provider value={{currentUser:authenUser}}>
-			<div>
-				<h1> Welcome {authenUser.name} </h1>
-				<Posts userId={authenUser.id} />
-			</div>
-	  </UserContext.Provider>
+      <UserContext.Provider value={{ currentUser: authenUser }}>
+        <Posts userId={authenUser.id}></Posts>
+      </UserContext.Provider>
     );
+
   } else {
     return (
+
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -77,7 +76,7 @@ export function Auth() {
 
           <button className="btn btn-danger">Login</button>
           <div style={{ color: "red", marginTop: "10px" }}>
-            {authenUser.errorMassage}
+            {authenUser.errorMsg}
           </div>
         </form>
       </div>
