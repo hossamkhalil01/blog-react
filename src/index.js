@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Blog from './Blog';
+import {Auth} from './components/Auth';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Blog/>
+    <Auth/>
   </React.StrictMode>,
   document.getElementById('root')
 );
