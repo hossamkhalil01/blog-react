@@ -3,11 +3,15 @@ import { Posts } from "./Posts";
 import { FeaturedPosts } from "./FeaturedPosts";
 import { UserContext } from "./UserContext";
 import { useState } from "react";
+import { useContext } from "react";
+// import { UserContext } from "./UserContext";
 
-
-export function Createpost({ userId }) {
+export function Createpost() {
+  const userId = useContext(UserContext).currentUser.id;
   const [newPost, setPost] = useState({
-      userId: userId
+      userId: userId,
+      title:"",
+      body:""
   });
 
   const handleChange = (key, value) => {
@@ -30,7 +34,7 @@ export function Createpost({ userId }) {
     })
       .then((response) => response.json())
       .then((json) => {
-        <Redirect to="/posts" noThrow />
+        navigate("/");
       });
   };  
     return (

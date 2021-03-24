@@ -1,6 +1,7 @@
 import { navigate, Redirect, redirectTo } from "@reach/router";
 import { useState } from "react";
 import { Posts } from "./Posts";
+import { Post } from "./Post"
 import { FeaturedPosts } from "./FeaturedPosts";
 import { UserContext } from "./UserContext";
 import { Createpost } from "./CreatePost";
@@ -8,13 +9,8 @@ import { Router } from "@reach/router";
 import { PrivateRoute } from './privateRoute';
 import { Login } from "./Login";
 import { Profile } from "./Profile";
-
+import { Header } from "./header";
 export function Auth() {
-
-//   const [user, updateUser] = useState({
-//     username: "",
-//     email: "",
-//   });
 
   const [authenUser, updateAutehnUser] = useState({
     isAuthen: false,
@@ -41,9 +37,13 @@ export function Auth() {
 
     return (
       <UserContext.Provider value={{ currentUser: authenUser }}>
+		  <Header/>
 		<Router>
 			<PrivateRoute path="/">
-				<Profile path="/"/>
+				<FeaturedPosts path="/"/>
+				<Profile path="/profile"/>
+				<Post path="/posts/:id" />
+				<Createpost path="/createPost/"></Createpost>
 			</PrivateRoute>
 			<Login  handleLogin={handleSubmit} path="/login"></Login>
 		</Router>

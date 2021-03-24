@@ -14,7 +14,7 @@ export function FeaturedPosts() {
               posts = posts.slice(0, 2);
             updatePosts({ ...userPosts, posts });
           });
-      }, [userPosts]);
+      }, []);
     
       return (
         <div>
