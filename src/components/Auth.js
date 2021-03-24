@@ -28,7 +28,6 @@ export function Auth() {
         } else {
           navigate("/login");
           updateAutehnUser({ errorMsg: "Invalid username or password.", isAuthen: false });
-
         }
       });
   };

@@ -31,13 +31,14 @@ export function Post({ id }) {
         <p>{post.title}</p>
         <p>{post.body}</p>
 
-        <h3>Comment section</h3>
+        <h3>Comments Section</h3>
 
         {comments.comments_array.map((comment) => {
           return (
             <div key={comment.id} className="card">
               <div className="card-body">
                 <h5 className="card-title">{comment.name}</h5>
+                <h5 className="card-title">By: {comment.email}</h5>
                 <p className="card-text">{comment.body}</p>
               </div>
             </div>

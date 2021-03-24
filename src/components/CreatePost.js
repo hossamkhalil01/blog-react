@@ -39,6 +39,7 @@ export function Createpost() {
     <div>
       <Header></Header>
       <div className="container">
+        <h3 className="mb-4">Add Post</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="post-title" className="form-label">
@@ -57,10 +58,10 @@ export function Createpost() {
               Body
                 </label>
             <textarea className="form-control" id="post-body" onChange={(e) => handleChange("body", e.target.value)}
-              value={newPost.body} cols="10" rows="15">
+              value={newPost.body} cols="5" rows="15">
             </textarea>
           </div>
-          <button className="btn btn-primary">Add Post</button>
+          <button className="btn btn-primary float-right">Post</button>
         </form>
       </div>
     </div>
