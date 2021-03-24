@@ -15,7 +15,7 @@ export function Posts({ userId }) {
   }, []);
 
   return (
-    <div>
+    <div className="">
       {
         userPosts.posts.map((post) => {
           return <div key={post.id}>
