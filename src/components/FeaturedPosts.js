@@ -11,7 +11,7 @@ export function FeaturedPosts() {
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => response.json())
       .then((posts) => {
-        posts = posts.slice(0, 2);
+        posts = posts.slice(0, 10);
         updatePosts({ ...userPosts, posts });
       });
   }, []);

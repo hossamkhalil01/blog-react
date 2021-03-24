@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "./UserContext";
 
 export function Login({ handleLogin }) {
   const [user, updateUser] = useState({
@@ -9,6 +10,7 @@ export function Login({ handleLogin }) {
   const handleChange = (key, value) => {
     updateUser({ ...user, [key]: value });
   };
+  const context = useContext(UserContext).currentUser;
 
   return (
     <div className="container">
@@ -35,7 +37,12 @@ export function Login({ handleLogin }) {
           value={user.email}
         />
       </div>
-      <button className="btn btn-danger " onClick={() => handleLogin(user.username, user.email)}>Login</button>
-    </div>
+
+      <button className="btn btn-primary float-right" onClick={() => handleLogin(user.username, user.email)}>Login</button>
+      <p class="form-check-label fs-3 mt-3 mb-3 text-danger text-center">
+        {context.errorMsg}
+      </p>
+
+    </div >
   );
 }

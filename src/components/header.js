@@ -22,18 +22,18 @@ export function Header() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link active" to="/profile">
-                profile
+                Profile
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/createPost">
-                create Post
+                New Post
               </Link>
             </li>
 
             <li className="nav-item">
               <Link className="nav-link" to="/login">
-                log out
+                Logout
               </Link>
             </li>
           </ul>
