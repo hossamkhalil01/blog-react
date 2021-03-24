@@ -1,45 +1,53 @@
 import { Link } from "@reach/router";
 import { useEffect, useState } from "react";
+import { Header } from "./header";
 
 export function Post({ id }) {
+  const [comments, updatePost] = useState({
+    comments_array: [],
+  });
+  const [post, setPost] = useState({
+    title: "",
+    body: "",
+  });
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then((response) => response.json())
+      .then((post) => {
+        setPost({ post });
+      });
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+      .then((response) => response.json())
+      .then((comments) => {
+        updatePost({ ...comments, comments_array: comments });
+      });
+  }, []);
 
-    const [comments, updatePost] = useState({
-      comments_array:[]
-    });
-    const [post, setPost] = useState({
-      title:"",
-      body:""
-    });
-      useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-          .then((response) => response.json())
-          .then((post) => {
-            setPost({ post });
-          });
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
-          .then((response) => response.json())
-          .then((comments) => {
-            updatePost({ ...comments, comments_array:comments });
-          });
-      }, []);
-    
-      return (
-        <div>
-            <p>{post.title}</p>
-            <p>{post.body}</p>
+  return (
+    <div>
+      <Header />
 
-            <h3>Comment section</h3>
+      <div className="container">
+        <p>{post.title}</p>
+        <p>{post.body}</p>
 
-            {comments.comments_array.map((comment) => {
-              return <div key={comment.id}>
-                <p>Commenter: {comment.name}</p>
-                <p>{comment.body}</p>
-              </div>;
-            })}
+        <h3>Comment section</h3>
 
-            <Link to="/">Back</Link>
-        </div>
-      );
+        {comments.comments_array.map((comment) => {
+          return (
+            <div key={comment.id} className="card">
+              <div className="card-body">
+                <h5 className="card-title">{comment.name}</h5>
+                <p className="card-text">{comment.body}</p>
+              </div>
+            </div>
+          );
+        })}
 
-
+        <Link className="btn btn-primary" to="/">
+          Back
+        </Link>
+      </div>
+    </div>
+  );
 }

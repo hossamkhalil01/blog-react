@@ -37,9 +37,10 @@ export function Auth() {
 
     return (
       <UserContext.Provider value={{ currentUser: authenUser }}>
-		  <Header/>
+		  
 		<Router>
 			<PrivateRoute path="/">
+      
 				<FeaturedPosts path="/"/>
 				<Profile path="/profile"/>
 				<Post path="/posts/:id" />
